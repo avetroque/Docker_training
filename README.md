@@ -1,5 +1,7 @@
 This repo is a part of Data Engineering Zoomcamp 2024. There is another repo called DE_zoomcamp2024, which demonstrates how github codespaces works i.e how to code in the cloud. 
 
+# 1. Introduction
+
 This repo is used to demonstrate how to create a docker (dockerfile+pipeline) on local host machine which can have it's own environment, python version and packages (pandas) 
 
 To do this
@@ -37,6 +39,7 @@ docker run -it test:pandas
 ```
 
 
+# 2. Docker + Postgres
 
 PGCLI and NYTaxi 
 
@@ -139,7 +142,7 @@ pgcli -h localhost -p 5433 -u root -d ny_taxi
 
 
 
-Connecting  to a docker with pgadmin4
+# 3.Connecting  to a docker with pgadmin4
 
 ```
 docker run -it \ 
@@ -149,7 +152,9 @@ docker run -it \
     dpage/pgadmin4
 ```
 
-Connecting a docker container with pgadmin to another docker container with postgres
+
+
+# 4. Connecting a docker container with pgadmin to another docker container with postgres
 
 'pg-network' must be the same when creating network (docker network create)
 and running postgres (docker run -it --network=pg-network)
