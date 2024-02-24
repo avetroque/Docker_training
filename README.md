@@ -107,13 +107,9 @@ docker run -it image_name:image_tag second_parameter
 
 2. You download a docker image from docker, and run it locally 
 
-
-
-
-
-
-
 From https://www.youtube.com/watch?v=2JM-ziJt0WI&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb
+
+```
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
@@ -122,12 +118,13 @@ docker run -it \
     -p 5432:5432 \
     postgres:13
 
-
+```
 
 Your configuration. MUST CHANGE port to 5433 . port 5432 is already being used by pgadmin4
 
 in gitbash, paste
 
+```
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
@@ -136,10 +133,13 @@ docker run -it \
     -p 5433:5432 \
     postgres:13
 
+```
+
 then only can run in gitbash (in a new window) as below. you can even use password as 'root'.
 
+```
 pgcli -h localhost -p 5433 -u root -d ny_taxi
-
+```
 
 
 # 3.Connecting  to a docker with pgadmin4
@@ -159,10 +159,11 @@ docker run -it \
 'pg-network' must be the same when creating network (docker network create)
 and running postgres (docker run -it --network=pg-network)
 
+```
 docker network create pg-network
+```
 
-
-
+```
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
@@ -172,7 +173,7 @@ docker run -it \
     --network=pg-network \
     --name pg-database \
     postgres:13
-
+```
 
 
 
