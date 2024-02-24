@@ -166,12 +166,13 @@ docker run -it \
 
 ## 4. Connecting a docker container with pgadmin to another docker container with postgres
 
-'pg-network' must be the same when creating network (docker network create)
-and running postgres (docker run -it --network=pg-network)
+First open a terminal and create a docker virtual network 
 
 ```
 docker network create pg-network
 ```
+
+Then in the same terminal, run the code for connecting the postgres docker container to the created network . In this case, the pg network is called pg-network. In the code below, the docker container with posgtres is named as 'pg-database'
 
 ```
 docker run -it \
@@ -185,6 +186,7 @@ docker run -it \
     postgres:13
 ```
 
+Then in another terminal, run docker container with pgadmin. This time add the network. The name of the docker container (this time it is named as --name pgadmin) is not important because we have nothing to connect to this docker container. 
 
 ```
 docker run -it \
