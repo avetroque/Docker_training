@@ -3,9 +3,14 @@ This repo is a part of Data Engineering Zoomcamp 2024. There is another repo cal
 
 Table of content
 
-1. [connecting-a-docker-container-with-pgadmin-to-another-docker-container-with-postgres](https://github.com/avetroque/Docker_training?tab=readme-ov-file#4-connecting-a-docker-container-with-pgadmin-to-another-docker-container-with-postgres)
+1. [Introduction](https://github.com/avetroque/Docker_training?tab=readme-ov-file#1-introduction)
+2. [Docker + Postgres](https://github.com/avetroque/Docker_training?tab=readme-ov-file#2-docker--postgres)
+3. [Ingesting data to docker postgres](https://github.com/avetroque/Docker_training?tab=readme-ov-file#3connecting--to-a-docker-with-pgadmin4)
 
-# 1. Introduction
+
+4. [Connecting docker pgadmin with docker postgres](https://github.com/avetroque/Docker_training?tab=readme-ov-file#4-connecting-a-docker-container-with-pgadmin-to-another-docker-container-with-postgres)
+
+## 1. Introduction
 
 This repo is used to demonstrate how to create a docker (dockerfile+pipeline) on local host machine which can have it's own environment, python version and packages (pandas) 
 
@@ -44,7 +49,7 @@ docker run -it test:pandas
 ```
 
 
-# 2. Docker + Postgres
+## 2. Docker + Postgres
 
 PGCLI and NYTaxi 
 
@@ -147,7 +152,7 @@ pgcli -h localhost -p 5433 -u root -d ny_taxi
 ```
 
 
-# 3.Connecting  to a docker with pgadmin4
+## 3.Connecting  to a docker with pgadmin4
 
 ```
 docker run -it \ 
@@ -159,7 +164,7 @@ docker run -it \
 
 
 
-# 4. Connecting a docker container with pgadmin to another docker container with postgres
+## 4. Connecting a docker container with pgadmin to another docker container with postgres
 
 'pg-network' must be the same when creating network (docker network create)
 and running postgres (docker run -it --network=pg-network)
