@@ -1,4 +1,9 @@
-This repo is a part of Data Engineering Zoomcamp 2024. There is another repo called DE_zoomcamp2024, which demonstrates how github codespaces works i.e how to code in the cloud. 
+This repo is a part of Data Engineering Zoomcamp 2024. There is another repo called DE_zoomcamp2024, which demonstrates how github codespaces works i.e how to code in the cloud.
+
+
+Table of content
+
+1. [connecting-a-docker-container-with-pgadmin-to-another-docker-container-with-postgres](https://github.com/avetroque/Docker_training?tab=readme-ov-file#4-connecting-a-docker-container-with-pgadmin-to-another-docker-container-with-postgres)
 
 # 1. Introduction
 
@@ -176,7 +181,7 @@ docker run -it \
 ```
 
 
-
+```
 docker run -it \
     -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
     -e PGADMIN_DEFAULT_PASSWORD="root" \
@@ -184,4 +189,4 @@ docker run -it \
     --network=pg-network \
     --name pgadmin \
     dpage/pgadmin4
-
+```
