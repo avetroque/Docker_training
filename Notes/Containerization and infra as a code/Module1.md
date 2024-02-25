@@ -203,11 +203,12 @@ Then open localhost:8080 where the pgadmin tool will be displayed. Login with de
 Click 'Create a server'. In 'general' tab, specify a name 'Docker localhost'. In 'connection' tab specify
 
 * host : pg-database  (because pgadmin is trying to connect to this db)
-* port : 5432  (why 5432 and not 5433?)
+* port : 5432  (why 5432 and not 5433?answer below) 
 * maintenance db : postgres
 * username : root
 * password : root
 
+Why 5432 and not 5433? Because pgadmin container is connecting pgres container which uses port 5432. 
 
 ## 5.  Putting the ingestion script into Docker
 
@@ -235,6 +236,8 @@ python ingest_data.py \
     --url="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.csv"
 
 ```
+
+Port must be 5433 because python is executed on host machine, not in container image. 
 
 The s3 amazonaws link is not working. Replace with 
 
@@ -295,4 +298,4 @@ docker run -it \
 ```
 
 The network name must come before the image name. Anything after the image are the parameters.
-Why 5432 works??
+Why 5432 works?? Because ingest_data.py is executed using python inside the container. So the localhost port for that container is 5432.
