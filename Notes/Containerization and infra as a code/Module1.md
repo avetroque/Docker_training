@@ -199,4 +199,16 @@ docker run -it \
     dpage/pgadmin4
 ```
 
+Then open localhost:8080 where the pgadmin tool will be displayed. Login with default email and password as above.
+Click 'Create a server'. In 'general' tab, specify a name 'Docker localhost'. In 'connection' tab specify
 
+* host : pg-database  (because pgadmin is trying to connect to this db)
+* port : 5432  (why 5432 and not 5433?)
+* maintenance db : postgres
+* username : root
+* password : root
+
+
+## 5.  Putting the ingestion script into Docker
+
+In this section, 
