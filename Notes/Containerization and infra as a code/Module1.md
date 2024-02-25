@@ -211,15 +211,25 @@ Click 'Create a server'. In 'general' tab, specify a name 'Docker localhost'. In
 
 ## 5.  Putting the ingestion script into Docker
 
-In this section, 
+In this section, we are going to run `ingest_data.py` using `Dockerfile`. Refer to file `ingest_data.py`
+for details.
 
+## 5.1 Testing using `python ingest_data.py`
+
+1. Bash-run python `ingest_data.py`, pass parameter. Must run python in working dir
+2. `ingest_data.py` downloads the csv file in working dir
+3. `ingest_data.py` connects to localhost 5433 which then connects to container port 5432 and access postgress
+4. `ingest_data.py` then 'uploads' the table to postgres in the container using `df.to_sql(conn=engine)`
+
+
+Note that the table_name yellow_taxi_data has been changed to yellow_taxi_trips. The script to run in terminal
 
 ```
 python ingest_data.py \
     --user=root \
     --password=root \
     --host=localhost \
-    --port=5432 \
+    --port=5433 \
     --db=ny_taxi \
     --table_name=yellow_taxi_trips \
     --url="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.csv"
@@ -235,15 +245,54 @@ You can get your ip add by using `ipconfig` in bash .Don't forget to do in bash 
 ```
 python -m http.server
 ```
-which will start a server at :8000. Then test the python code by running the below code in terminal
+which will start a server at :8000. The code above needs to be run in the same directory as the `ingest_data.py` file. Then test the python code by running the below code in terminal. Make sure the port is also 5433 not 5432
 
 ```
 python ingest_data.py \
     --user=root \
     --password=root \
     --host=localhost \
-    --port=5432 \
+    --port=5433 \
     --db=ny_taxi \
     --table_name=yellow_taxi_trips \
     --url="http://192.168.0.104:8000/yellow_tripdata_2021-01.csv"
 ```
+
+## 5.2 Running ingest_data.py script with docker 
+
+Dockerfile
+```
+FROM python:3.9.1
+
+RUN apt-get install wget
+RUN pip install pandas sqlalchemy pyscopg2
+
+WORKDIR /app
+
+COPY ingest_data.py ingest_data.py
+
+ENTRYPOINT ["python","ingest_data.py"]
+```
+
+Build the image
+```
+docker build -t taxi_ingest:v001
+```
+
+Run in terminal
+```
+docker run -it \
+    --network=pg-network \
+    taxi_ingest:v001 \
+    --user=root \
+    --password=root \
+    --host=pg-database \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_trips \
+    --url="http://192.168.0.104:8000/yellow_tripdata_2021-01.csv"
+
+```
+
+The network name must come before the image name. Anything after the image are the parameters.
+Why 5432 works??
