@@ -212,3 +212,38 @@ Click 'Create a server'. In 'general' tab, specify a name 'Docker localhost'. In
 ## 5.  Putting the ingestion script into Docker
 
 In this section, 
+
+
+```
+python ingest_data.py \
+    --user=root \
+    --password=root \
+    --host=localhost \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_trips \
+    --url="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.csv"
+
+```
+
+The s3 amazonaws link is not working. Replace with 
+
+http://192.168.0.104:8000/yellow_tripdata_2021-01.csv
+
+You can get your ip add by using `ipconfig` in bash .Don't forget to do in bash terminal
+
+```
+python -m http.server
+```
+which will start a server at :8000. Then test the python code by running the below code in terminal
+
+```
+python ingest_data.py \
+    --user=root \
+    --password=root \
+    --host=localhost \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_trips \
+    --url="http://192.168.0.104:8000/yellow_tripdata_2021-01.csv"
+```
