@@ -299,3 +299,6 @@ docker run -it \
 
 The network name must come before the image name. Anything after the image are the parameters.
 Why 5432 works?? Because ingest_data.py is executed using python inside the container. So the localhost port for that container is 5432.
+
+
+## 6. Running Postgres and PgAdmin using docker compose 

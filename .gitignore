@@ -2,3 +2,5 @@ yellow_tripdata_2021-01.csv
 yellow_tripdata_2021-01.parquet
 /ny_taxi_postgres_data/
 output.csv
+/data_pgadmin/
+Terraform/dtc-de-416516-b7c902b59395.json
